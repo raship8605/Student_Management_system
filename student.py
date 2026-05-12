@@ -5,9 +5,41 @@ class Student:
         self.roll_number=roll_number
         self.marks=marks
 
-    # @classmethod
-    # def add_student(cls):
+    def update_marks(self,new_marks):
+        self.marks=new_marks
 
+    @classmethod
+    def find_student_by_roll(cls,roll):
+        for Student in cls.all_students:
+            if Student.roll_number==roll:
+                return Student
+            return None
+        
+
+
+    # @classmethod
+    def add_student(cls):
+        name=input("Enter student name: ")
+        roll=eval(input("Enter roll number: "))
+        marks=eval(input("Enter student marls: "))
+        student=cls(name,roll,marks)
+        cls.all_students.append(student)
+        print(f"student {name} added successfully!! ")
+
+    @classmethod
+    def update_student_marks(cls):
+        roll=int(input("Enter Student roll number to update marks: "))
+        Student=cls.find_student_by_roll(roll)
+        if Student:
+            new_marks=int(input("Enter new marks: "))
+            Student.update_marks(new_marks)
+        else:
+            print("Student not found.")
+
+
+
+
+    
 
 def menu():
         while True:
